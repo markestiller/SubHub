@@ -1,0 +1,31 @@
+{
+    "propertiesAll": [
+    {
+        "id": 1,
+        "address": "300 Huron St, Toronto, ON M5S 3J6",
+        "lat": 43.657164038,
+        "lon": -79.400248399,
+        "desc": "A residence hall open to students of any years!",
+        "price": 1800,
+        "type": "dormitory",
+        "numBeds": 1,
+        "numBaths": 1,
+        "duration": 3,
+        "seller": "New College"
+    },
+
+    {
+        "id": 2,
+        "address": "123 Queen St W, Toronto, ON M5H 2M9",
+        "lat": 43.651358291809764,
+        "lon": -79.38438534895572,
+        "desc": "Open to tourists",
+        "price": 2300,
+        "type": "hotel",
+        "numBeds": 1,
+        "numBaths": 1,
+        "duration": 1,
+        "seller": "Sheraton Centre"
+    }
+    ]
+}

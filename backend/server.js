@@ -2,7 +2,17 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 3000;
+const port = 8000;
+
+// connect to AWS services
+// const AWS = require('aws-sdk');
+
+// // AWS credentials setup
+// AWS.config.update({
+//   region: 'us-east-1',
+//   accessKeyId: 'your-access-key-id',
+//   secretAccessKey: 'your-secret-access-key'
+// });
 
 // MIDDLEWARES
 app.use(cors());
@@ -35,13 +45,47 @@ class Filter {
 
 // GLOBAL VARIABLES
 let propertyData = {};
-let propertiesAll = [];
+let propertiesAll = [{
+  "id": 1,
+  "address": "300 Huron St, Toronto, ON M5S 3J6",
+  "lat": 43.657164038,
+  "lon": -79.400248399,
+  "desc": "A residence hall open to students of any years!",
+  "price": 1800,
+  "type": "dormitory",
+  "numBeds": 1,
+  "numBaths": 1,
+  "duration": 3,
+  "seller": "New College"
+}];
+
+let testFilter = new Filter();
+
 let propertiesFiltered = []; // stores properties with current subset specified
-let filters = []; // will store values from "/filter-property" POST, then be used in "/get-property-subset"
+let filters = [testFilter]; // will store values from "/filter-property" POST, then be used in "/get-property-subset"
+let currentId = 0;
 
 // HELPER FUNCTIONS
 
+const checkFilter = (property, filterObject) => {
+  // helper function to check if a property follows a filter
+  if (filterObject.minPrice <= property.price && property.price <= filterObject.maxPrice) {
+    if (filterObject.minBedrooms <= property.numBedrooms) {
+      console.log(filterObject.minPrice);
+      console.log(filterObject.maxPrice);
+      console.log(filterObject.minBedrooms);
+      return true;
+    }
+  }
+
+  return false;
+};
+
+
+
 // ROUTE HANDLERS
+
+// ------------------------------ POST REQUESTS ------------------------------------------ //
 
 app.post("/create-property", async (req, res) => {
   // frontend sends property information to backend
@@ -50,16 +94,15 @@ app.post("/create-property", async (req, res) => {
   propertyData = req.body();
   console.log(propertyData);
 
-  // set the variables
-  // const address = propertyData.address;
-  // const description = propertyData.description;
-  // const price = propertyData.price;
-  // const type = propertyData.type;
-  // const duration = propertyData.duration;
-  // const seller = propertyData.seller;
+  // convert address to lat and lon using AWS 
+  const address = propertyData.address;
 
-  // initialize lat and lon
+  let lat;
+  let lon;
 
+  // set lat and lon
+  propertyData.lat = lat;
+  propertyData.lon = lon;
   
   // add the property to a list of all properties
   propertiesAll.push(propertyData);
@@ -67,14 +110,6 @@ app.post("/create-property", async (req, res) => {
 
   // send success message
   res.status(200).send("Property data received");
-
-  
-
-  
-
-
-
-  
 });
 
 app.post("/filter-property", (req, res) => {
@@ -83,7 +118,7 @@ app.post("/filter-property", (req, res) => {
   filters = req.body();
   
   // declare filter object
-  filterObj = new Filter();
+  let filterObj = new Filter();
   
   if (filters.numBedrooms != 0) {
     filterObj.addBedroomFilter(filters.numBedrooms);
@@ -107,13 +142,30 @@ app.post("/filter-property", (req, res) => {
 
   // send success message
   res.status(200).send("Filter successfully added");
+});
 
-  
+app.post("/send-property-id", (req, res) => {
+  data = req.body();
+  currentId = data["id"];
 
 });
 
+
+// ------------------------------ GET REQUESTS ------------------------------------------ //
+
 app.get("/get-property", (req, res) => {
-  // frontend receives one property information from backend
+  // frontend receives one property information from backend  
+
+  propertiesAll.forEach(property => { 
+    // for property in propertiesAll
+    if (property.id == currentId) {
+      res.json(property);
+    }
+  })
+
+  // throw an error message if the id was not found
+  
+  
 });
 
 app.get("/get-property-subset", (req, res) => {
@@ -124,32 +176,22 @@ app.get("/get-property-subset", (req, res) => {
 
   // apply filters (propertiesFiltered is empty here)
   propertiesAll.forEach(property => {
-    if (checkFilter(property)) {
+    if (checkFilter(property, filters[0])) {
       propertiesFiltered.push(property);
     }
   })
 
   // remove the filter from list
-  let filters = [];
+  filters = [];
 
   // send back to front end
   res.json(propertiesFiltered);
 });
 
-const checkFilter = (property, filterObject) => {
-  // helper function to check if a property follows a filter
-  if (filterObject.minPrice <= property.price && property.price <= filterObject.maxPrice) {
-    if (filterObject.minBedrooms <= property.numBedrooms) {
-        return true;
-    }
-  }
-
-  return false;
-};
-
 app.get("/get-property-all", (req, res) => {
-// frontend receives all property information from backend
+  res.json(propertiesAll);
 });
+
 
 // start the server
 app.listen(port, () => {
