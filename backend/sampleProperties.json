@@ -11,7 +11,8 @@
         "numBeds": 1,
         "numBaths": 1,
         "duration": 3,
-        "seller": "New College"
+        "seller": "New College",
+        "imageURL": "https://www.newcollege.utoronto.ca/wp-content/uploads/2022/03/wilson-1024x680.jpg?x32939"
     },
 
     {
@@ -25,7 +26,9 @@
         "numBeds": 1,
         "numBaths": 1,
         "duration": 1,
-        "seller": "Sheraton Centre"
+        "seller": "Sheraton Centre",
+        "imageURL": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/465590699.jpg?k=4a99b774c25903d1f320a94d52272c41a607019a1021edf58d49848e7dd82ae8&o=&hp=1"
+
     }
     ]
 }
