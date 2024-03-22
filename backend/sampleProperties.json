@@ -14,9 +14,51 @@
         "seller": "New College",
         "imageURL": "https://www.newcollege.utoronto.ca/wp-content/uploads/2022/03/wilson-1024x680.jpg?x32939"
     },
-
     {
         "id": 2,
+        "address": "55 St George St, Toronto, ON M5S 0C9",
+        "lat": 43.66094831675046,
+        "lon": -79.39667121175584,
+        "desc": "An engineering centre with many classrooms to allow creative thinking!",
+        "price": 600,
+        "type": "Condo",
+        "numBeds": 10,
+        "numBaths": 10,
+        "duration": 1,
+        "seller": "Myhal Centre for Engineering Innovation and Entrepreneurship",
+        "imageURL": "https://lh5.googleusercontent.com/p/AF1QipPM5m_F598U3QAyl1pH3KJ8UY9T5FAuS5RDpKDE=w408-h306-k-no"
+    },
+    {
+        "id": 3,
+        "address": "85 St George St, Toronto, ON M5S 2E5",
+        "lat": 43.66430020119241, 
+        "lon": -79.39785856441806,
+        "desc": "A residence hall open to students of any years!",
+        "price": 1750,
+        "type": "dormitory",
+        "numBeds": 2,
+        "numBaths": 1,
+        "duration": 3,
+        "seller": "Whitney Hall Residence",
+        "imageURL": "https://www.uc.utoronto.ca/sites/default/files/styles/scale_width_500/public/assets/images/whitney%20courtyard.jpg?itok=k07KMEFJ"
+    },
+    {
+        "id": 4,
+        "address": "73 St George St, Toronto, ON M5S 2E5",
+        "lat": 43.66327751663174, 
+        "lon": -79.39698277353911,
+        "desc": "A residence hall open to students of any years!",
+        "price": 1200,
+        "type": "dormitory",
+        "numBeds": 2,
+        "numBaths": 1,
+        "duration": 3,
+        "seller": "Sir Daniel Wilson Residence",
+        "imageURL": "https://lh5.googleusercontent.com/p/AF1QipPfFBbSSU6flRg9VeyjadndrDJ3d6HQCp-7-eT_=w408-h306-k-no"
+    },
+
+    {
+        "id": 5,
         "address": "123 Queen St W, Toronto, ON M5H 2M9",
         "lat": 43.651358291809764,
         "lon": -79.38438534895572,
