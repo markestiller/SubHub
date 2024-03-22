@@ -1,4 +1,4 @@
-![Subhub](https://github.com/markestiller/SubHub/assets/127448729/4167deb5-ffdb-4f85-99b4-3423ab47d743)
+<img width="764" alt="Screenshot_2024-03-22_154626" src="https://github.com/markestiller/SubHub/assets/127448729/019f6037-a367-4bc4-aa60-9b2ad255b51e">
 
 Introducing SubHub!
 Welcome to SubHub - your go-to platform for subleasing apartments among students during the summer break!
