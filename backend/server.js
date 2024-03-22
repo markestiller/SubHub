@@ -12,7 +12,6 @@ const locationService = new AWS.Location({
   region: "us-east-1",
   accessKeyId: "ASIAS3ROA4GDF44C2QGK",
   secretAccessKey: "7w9Youulow0/ei7rFiJRK+dT0NgRDA6swmkeVuG6",
-  sessionToken: "IQoJb3JpZ2luX2VjEDQaCXVzLWVhc3QtMSJHMEUCIHGIGVX8vWpvZ+berRcDUHhP60z6wJMSVMKMwocy2TrYAiEAjeb1RQSIv+7/i4QaREE2DyI8sKAuuiszCxtZD3LpZAMqmQIITBACGgwxOTY1OTEyODA1MTgiDBFKWBZAjf/8tg5EESr2ARfEKS1X/L77067ixW/wOKT5SzosNn8V2IbzZ33n6JxSGnbpbwfp9UEOm/c0SUPru8mDbzBJYvcwaLtIpzeth9TJCPE1+SZM+QbsKIftP52yV4M1E4OFKiMLths/gLkkGmde+d5hG2q1W2Aq/68XyVxYm1AMOhhceXDoCYrNLR6WC5wPGO+7OAxpk4i082GPx46AyQ/tNcb8VH4wg5a6GmwjFY+vGpkqD4GZhXWXpcpMN/9/mA7WhQQcTLBBGpgmM443lQBjZs8g5mf7ZqM8Rc3mVsuxMEwiSgtdLrCcCxotv/uX7qH808CWpbOtTtc7ivp0EXMETzCDrfevBjqdAdKCktK2cFU0qQWbwDXklH0ES2oWe+k6PHDGE6SWBiQWlpsoAUDYmPszyhWdGm7n8zCi6D8DtyR0h8yItNrk+VsOQl2H7BGrIZ95NYVfcGImdGP5vaGhuiKdELC3xawuYk7CY4iXd23bQojswWOjjCV6GKYPXRS3stVn280sR7Fpq/Dj0w2d62hMoN3mvUg7VRGBYx0K9uF6MmT1pEM="
 });
 
 // MIDDLEWARES
@@ -22,12 +21,9 @@ app.use(express.json());
 // OBJECTS
 class Filter {
   constructor() {
-    // this.location = ...;
     this.minPrice = 0;
     this.maxPrice = 6000;
     this.minBedrooms = 0;
-    // this.startDate = Date();
-    // this.endDate = Date();
   }
 
   addBedroomFilter(numBedrooms) {
@@ -46,10 +42,6 @@ class Filter {
 // GLOBAL VARIABLES
 let propertyData = {};
 let propertiesAll = [];
-
-let testFilter = new Filter();
-testFilter.addMaxPriceFilter(2000);
-
 let propertiesFiltered = []; // stores properties with current subset specified
 let allFilters = []; // will store values from "/filter-property" POST, then be used in "/get-property-subset"
 let currentId = 0;
