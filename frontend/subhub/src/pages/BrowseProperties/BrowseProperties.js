@@ -134,7 +134,7 @@ function BrowseProperties() {
                     overflow={"hidden"}
                     cursor={"pointer"}
                 >
-                    <Map />
+                    <Map openSide={() => setOpenSide(true)} />
                 </GridItem>
             </Grid>
             <ListingDrawer
