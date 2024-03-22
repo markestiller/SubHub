@@ -1,14 +1,18 @@
-// imports and setup
+// IMPORTS AND SETUP
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
 
-// middlewares
+// MIDDLEWARES
 app.use(cors());
 app.use(express.json());
 
-// route handlers
+// GLOBAL VARIABLES
+
+// HELPER FUNCTIONS
+
+// ROUTE HANDLERS
 
 app.post("/create-property", (req, res) => {
   // frontend sends property information to backend
