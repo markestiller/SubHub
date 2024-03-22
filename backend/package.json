@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "aws-sdk": "^2.1584.0",
+=======
+>>>>>>> eaee95c0d979d35d951cc22d3d2fa031043149d6
     "cors": "^2.8.5",
     "express": "^4.19.1"
   }

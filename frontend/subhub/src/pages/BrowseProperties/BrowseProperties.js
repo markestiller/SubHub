@@ -16,12 +16,17 @@ import {
     Button,
 } from "@chakra-ui/react";
 import "./BrowseProperties.css";
-import PropertyCard from "./PropertyCard";
 import ListingDrawer from "./ListingDrawer";
+import Map from "./Map";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { FaStar } from "react-icons/fa6";
 
 function BrowseProperties() {
     const [sliderValue, setSliderValue] = useState([1000, 5000]);
     const [openSide, setOpenSide] = useState(false);
+    const navigate = useNavigate();
+
+    const data = useLoaderData();
 
     return (
         <>
@@ -36,8 +41,10 @@ function BrowseProperties() {
                     <Flex
                         direction={"column"}
                         align={"start"}
-                        justify={"center"}
+                        justify={"start"}
                         padding={"20px"}
+                        h="100%"
+                        position="relative"
                     >
                         <Flex
                             justify={"center"}
@@ -103,7 +110,18 @@ function BrowseProperties() {
                             </Select>
                         </Container>
                         <Button onClick={() => setOpenSide(!openSide)}>
-                            Open side
+                            Side
+                        </Button>
+                        <Button
+                            leftIcon={<FaStar />}
+                            colorScheme="teal"
+                            variant="solid"
+                            position={"absolute"}
+                            bottom="10px"
+                            width="90%"
+                            onClick={() => navigate("/create")}
+                        >
+                            Host a stay!
                         </Button>
                     </Flex>
                 </GridItem>
@@ -113,11 +131,16 @@ function BrowseProperties() {
                     border="1px solid #357960"
                     borderRadius={"30px"}
                     margin="20px"
-                ></GridItem>
+                    overflow={"hidden"}
+                    cursor={"pointer"}
+                >
+                    <Map openSide={() => setOpenSide(true)} />
+                </GridItem>
             </Grid>
             <ListingDrawer
                 isOpen={openSide}
                 onClose={() => setOpenSide(false)}
+                data={data.data}
             />
         </>
     );
