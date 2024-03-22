@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import PropertyCard from "./PropertyCard";
 
-function ListingDrawer({ isOpen, onClose }) {
+function ListingDrawer({ isOpen, onClose, data }) {
     return (
         <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
             <DrawerOverlay />
@@ -23,10 +23,16 @@ function ListingDrawer({ isOpen, onClose }) {
 
                 <DrawerBody>
                     <Stack spacing="24px">
-                        <PropertyCard />
-                        <PropertyCard />
-                        <PropertyCard />
-                        <PropertyCard />
+                        {data.map((d) => {
+                            return (
+                                <PropertyCard
+                                    address={d.address}
+                                    price={d.price}
+                                    src={d.src}
+                                    id={d.id}
+                                />
+                            );
+                        })}
                     </Stack>
                 </DrawerBody>
 
