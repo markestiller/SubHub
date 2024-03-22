@@ -4,7 +4,7 @@ Introducing SubHub!
 Welcome to SubHub - your go-to platform for subleasing apartments among students during the summer break!
 
 ## Overview
-SubHub is a web application designed to connect students who are looking to sublease their apartments with other students who are in need of temporary housing during the summer. Whether you're traveling home for the break or studying abroad, SubHub makes it easy to find someone to take over your lease for the duration of your absence.
+SubHub is a web application designed to connect students in the Toronto area who are looking to sublease their apartments with other students who are in need of temporary housing during the summer. Whether you're traveling home for the break or studying abroad, SubHub makes it easy to find someone to take over your lease for the duration of your absence!
 
 ## Features
 
