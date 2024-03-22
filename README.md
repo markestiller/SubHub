@@ -15,6 +15,13 @@ SubHub is a web application designed to connect students in the Toronto area who
 
 We welcome contributions from the community to improve SubHub! If you have any ideas for new features, find bugs, or want to contribute code enhancements, feel free to open an issue or submit a pull request.
 
+## Steps to run
+### Running the backend
+`cd` into backend and run `node server.js`
+
+### Running the frontend
+`cd` into frontend/subhub and run `npm start`
+
 ## License
 
 SubHub is licensed under the [MIT License](LICENSE).
@@ -24,3 +31,4 @@ SubHub is licensed under the [MIT License](LICENSE).
 If you have any questions, suggestions, or feedback, you can reach out to us at [contact@subhub.com](mailto:contact@subhub.com).
 
 Happy subleasing! 🏠
+
