@@ -12,8 +12,8 @@ app.use(express.json());
 class Filter {
   constructor() {
       // this.location = ...;
-      this.lowerBound = 0;
-      this.upperBound = Number.MAX_SAFE_INTEGER;
+      this.minPrice = 0;
+      this.maxPrice = Number.MAX_SAFE_INTEGER;
       this.minBedrooms = 0;
       // this.startDate = Date();
       // this.endDate = Date();
@@ -23,14 +23,15 @@ class Filter {
     this.minBedrooms = numBedrooms;
   }
 
-  addPriceFilter(lowerBound, upperBound) {
-    this.lowerBound = lowerBound;
-    this.upperBound = upperBound;
+  addPriceFilter(minPrice, maxPrice) {
+    this.minPrice = minPrice;
+    this.maxPrice = maxPrice;
   }
 }
 
 
 // GLOBAL VARIABLES
+const propertyData = {};
 const properties = [];
 const propertiesFiltered = []; // stores properties with current subset specified
 const filters = []; // will store values from "/filter-property" POST, then be used in "/get-property-subset"
@@ -51,8 +52,11 @@ app.post("/create-property", (req, res) => {
 
 app.post("/filter-property", (req, res) => {
   // frontend sends filters for properties to backend
-
-  // 
+  filters = req.body
+  
+  // declare filter object
+  filterObj = new Filter();
+  
 
 });
 
