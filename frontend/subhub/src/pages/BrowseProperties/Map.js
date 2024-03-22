@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import maplibregl from "maplibre-gl"; // Import MapLibre GL library
-import propertyData from "./testMarkers.json";
-import PropertyMarker from "./PropertyMarker";
+// import 'maplibre-gl/dist/maplibre-gl.css'; // Import MapLibre GL CSS
+// import markersData from './testMarkers.json'
 
 const Map = () => {
     useEffect(() => {
@@ -14,37 +14,24 @@ const Map = () => {
         const map = new maplibregl.Map({
             container: "map",
             style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
-            center: [-79.115898, 49.295868],
-            zoom: 11,
+            center: [-79.3832, 43.6532],
+            zoom: 14,
         });
 
         map.addControl(new maplibregl.NavigationControl(), "top-left");
 
+        // Add markers based on JSON data
+        // markersData.forEach(marker => {
+        //   const { latitude, longitude } = marker;
+        //   new maplibregl.Marker()
+        //     .setLngLat([longitude, latitude])
+        //     .addTo(map);
+        // });
+
         return () => map.remove();
     }, []);
 
-    // transform GeoJSON features into simplified locker objects
-    const properties = propertyData.map((property) => ({
-        id: property.id,
-        address: property.address,
-        latitude: property.lat,
-        longitude: property.lon,
-        description: property.desc,
-        price: property.price,
-        type: property.type,
-        numBeds: property.numBeds,
-        numBaths: property.numBaths,
-        duration: property.duration,
-        seller: property.seller,
-    }));
-
-    return (
-        <div id="map" style={{ height: "100vh" }}>
-            {properties.map((property) => (
-                <PropertyMarker property={property} />
-            ))}
-        </div>
-    );
+    return <div id="map" style={{ height: "100vh" }} />;
 };
 
 export default Map;
