@@ -5,13 +5,13 @@ const app = express();
 const port = 8000;
 
 // set up AWS
-const AWS = require('aws-sdk');
+const AWS = require("aws-sdk");
 
 // set up location service credentials
 const locationService = new AWS.Location({
-  region: 'us-east-1', 
-  accessKeyId: 'ASIAS3ROA4GDF44C2QGK',
-  secretAccessKey: 'v1.public.eyJqdGkiOiIwMDkxNjQ5OC1iMjg5LTQ2YTctODY0ZS1jNGIyNWQ3N2FjOGEifW1cXwvtr-ap9wsqhl7kndZHJ0PkMxj21y21G-HA9SKXvlSYq8x-sVIK7kfFtMCIVT-SlVgsgQrBc1o8BjaoTo3Uc4sboWfKNE5O4WPW9FmMCFqpG48eSJ65hJuykor0fUTmBX75wdSRIBEsPILU-FV82_H59tE7-tx-Y1jxkUlhH8kMYfN7iA9PobBDKv7VPO0OdWvQl7duaXBMvv31x4tiPVpqU1cKOJVwBWfHgdlkc6TEscBzd0N-IDbQIwP2fDsc3XcEOzhUZfM7yQVIMPCCQMFoRenjYuuPrXkaAj9lW76QQVpa-qE9sZzLIZR2uMQ4gKkfpA1MsgSZ3P_GBp0.ZWU0ZWIzMTktMWRhNi00Mzg0LTllMzYtNzlmMDU3MjRmYTkx',
+  region: "us-east-1",
+  accessKeyId: "ASIAS3ROA4GDF44C2QGK",
+  secretAccessKey: "7w9Youulow0/ei7rFiJRK+dT0NgRDA6swmkeVuG6",
 });
 
 // MIDDLEWARES
@@ -21,12 +21,12 @@ app.use(express.json());
 // OBJECTS
 class Filter {
   constructor() {
-      // this.location = ...;
-      this.minPrice = 0;
-      this.maxPrice = 6000;
-      this.minBedrooms = 0;
-      // this.startDate = Date();
-      // this.endDate = Date();
+    // this.location = ...;
+    this.minPrice = 0;
+    this.maxPrice = 6000;
+    this.minBedrooms = 0;
+    // this.startDate = Date();
+    // this.endDate = Date();
   }
 
   addBedroomFilter(numBedrooms) {
@@ -41,7 +41,6 @@ class Filter {
     this.maxPrice = maxPrice;
   }
 }
-
 
 // GLOBAL VARIABLES
 let propertyData = {};
@@ -58,7 +57,10 @@ let currentId = 0;
 
 const checkFilter = (property, filterObject) => {
   // helper function to check if a property follows a filter
-  if (filterObject.minPrice <= property.price && property.price <= filterObject.maxPrice) {
+  if (
+    filterObject.minPrice <= property.price &&
+    property.price <= filterObject.maxPrice
+  ) {
     if (filterObject.minBedrooms <= property.numBeds) {
       return true;
     }
@@ -66,8 +68,6 @@ const checkFilter = (property, filterObject) => {
 
   return false;
 };
-
-
 
 // ROUTE HANDLERS
 
@@ -78,20 +78,22 @@ app.post("/create-property", async (req, res) => {
 
   // extract property data
   propertyData = req.body;
-  console.log("property data is:")
+  console.log("property data is:");
   console.log(propertyData);
 
-  // convert address to lat and lon using AWS 
+  // convert address to lat and lon using AWS
   const address = propertyData.address;
-  
+
   try {
     // Geocode address using Amazon Location Service
     const params = {
-      IndexName: 'SubHub', // Your place index name
-      Text: address
+      IndexName: "SubHub", // Your place index name
+      Text: address,
     };
 
-    const geocodeData = await locationService.searchPlaceIndexForText(params).promise();
+    const geocodeData = await locationService
+      .searchPlaceIndexForText(params)
+      .promise();
 
     if (geocodeData && geocodeData.Results && geocodeData.Results.length > 0) {
       const firstResult = geocodeData.Results[0];
@@ -117,14 +119,13 @@ app.post("/create-property", async (req, res) => {
 });
 
 app.post("/filter-property", (req, res) => {
-  
   // frontend sends filters for properties to backend
   filters = req.body;
   console.log(filters);
-  
+
   // declare filter object
   let filterObj = new Filter();
-  
+
   if (filters.numBeds != 0) {
     filterObj.addBedroomFilter(filters.numBeds);
   }
@@ -142,33 +143,29 @@ app.post("/filter-property", (req, res) => {
 
   console.log("Successfully added filter object to list of filters");
   console.log(allFilters[0]);
-  
+
   // send success message
   res.status(200).send("Filter successfully added");
 });
 
-app.post("/send-property-id", (req, res) => {;
+app.post("/send-property-id", (req, res) => {
   data = req.body;
   currentId = data["id"];
-
 });
-
 
 // ------------------------------ GET REQUESTS ------------------------------------------ //
 
 app.get("/get-property", (req, res) => {
-  // frontend receives one property information from backend  
+  // frontend receives one property information from backend
 
-  propertiesAll.forEach(property => { 
+  propertiesAll.forEach((property) => {
     // for property in propertiesAll
     if (property.id == currentId) {
       res.json(property);
     }
-  })
+  });
 
   // throw an error message if the id was not found
-  
-  
 });
 
 app.get("/get-property-subset", (req, res) => {
@@ -179,11 +176,11 @@ app.get("/get-property-subset", (req, res) => {
   // frontend receives one property information from backend
 
   // apply filters (propertiesFiltered is empty here)
-  propertiesAll.forEach(property => {
+  propertiesAll.forEach((property) => {
     if (checkFilter(property, allFilters[0])) {
       propertiesFiltered.push(property);
     }
-  })
+  });
 
   // remove the filter from list
   filters = [];
@@ -195,7 +192,6 @@ app.get("/get-property-subset", (req, res) => {
 app.get("/get-property-all", (req, res) => {
   res.json(propertiesAll);
 });
-
 
 // start the server
 app.listen(port, () => {
