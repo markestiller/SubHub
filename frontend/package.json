@@ -1,7 +1,12 @@
 {
   "dependencies": {
-    "@mantine/core": "^7.6.2",
-    "@mantine/hooks": "^7.6.2",
-    "create-react-app": "^5.0.1"
+    "@emotion/react": "^11.11.4",
+    "create-react-app": "^5.0.1",
+    "install": "^0.13.0",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.4",
+    "npm": "^10.5.0",
+    "react-router-dom": "^6.22.3",
+    "sort-by": "^1.2.0"
   }
 }
