@@ -26,9 +26,3 @@ We welcome contributions from the community to improve SubHub! If you have any i
 
 SubHub is licensed under the [MIT License](LICENSE).
 
-## Contact
-
-If you have any questions, suggestions, or feedback, you can reach out to us at [contact@subhub.com](mailto:contact@subhub.com).
-
-Happy subleasing! 🏠
-
